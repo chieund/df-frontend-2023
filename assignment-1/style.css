@@ -1,4 +1,195 @@
-html {
-  height: 100%;
-  width: 100%;
+body {
+    background-color: #eff3f8;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    height: 80px;
+    border-bottom: 2px solid #ccc;
+    background-color: #fff;
+}
+
+header h1 {
+    padding-left: 10px;
+    line-height: 80px;
+}
+
+header a {
+    line-height: 80px;
+    color: #757068;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+main {
+    /*background-color: #f1f0ef*/
+}
+
+.box-search {
+    float: right;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.box-search .input-keyword {
+    border: 1px solid #69645d;
+    padding: 5px;
+    height: 25px;
+    width: 400px;
+}
+.box-search .btn-add {
+    background-color: #f05265;
+    color: #fff;
+    padding: 11px;
+    border: none;
+    border-radius: 5px;
+}
+.box-search .btn-add:hover {
+    background-color: #f05265;
+    cursor: pointer;
+}
+.box-list {
+    clear: both;
+    margin: 10px 20px 50px 20px;
+}
+
+table, td, th {
+    border: 1px solid #dee2e6;
+    padding: 1rem 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead tr {
+    height: 40px;
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+td {
+    vertical-align: center;
+    padding: 1rem 1rem;
+}
+
+tbody tr {
+    background-color: #fff;
+}
+
+td a {
+    text-align: center;
+    color: red;
+}
+
+/* dialog */
+.box-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition-duration: 0.2s;
+}
+.dialog {
+    background-color: white;
+    padding: 20px;
+    width: 500px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+    border: 0 none;
+}
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.dialog-content {
+    margin-bottom: 20px;
+}
+.dialog-content div {
+    margin-bottom: 15px;
+}
+.dialog-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+.dialog-content input {
+    border: 1px solid #69645d;
+    height: 40px;
+    width: 100%;
+}
+.dialog-content select {
+    border: 1px solid #69645d;
+    height: 40px;
+    width: 100%;
+    background-color: #fff;
+}
+.dialog-footer a {
+    background-color: #f05265;
+    color: #fff;
+    padding: 11px;
+    border: none;
+    text-decoration: none;
+    float: right;
+    display: inline-flex;
+}
+.dialog-footer--delete {
+    text-align: center;
+}
+.dialog-footer--delete a {
+    float: none;
+    text-align: center;
+    background-color: #ccc;
+    margin: 0px 10px;
+    border-radius: 5px;
+}
+.dialog-footer--delete a:hover {
+    background-color: #f05265;
+}
+.box-dialog {
+    display: none;
+}
+.dialog {
+    display: none;
+}
+
+.label-delete {
+    background-color: #ffcdd2;
+    color: #c63737;
+    border-radius: 2px;
+    padding: 7px 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+}
+.label-delete i {
+    font-size: 14px;
+}
+
+footer {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    clear: both;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: -50px;
 }
