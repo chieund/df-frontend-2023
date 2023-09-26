@@ -2,12 +2,13 @@ import './../App.css';
 import React, {} from 'react';
 
 class Main extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props)
         this.onChangeName = this.onChangeName.bind(this)
         this.onChangeAuthor = this.onChangeAuthor.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onChangeSearch = this.onChangeSearch.bind(this)
 
         let data = localStorage.getItem("bookStores");
         this.state = {
@@ -18,7 +19,8 @@ class Main extends React.Component {
             nameDelete: '',
             idDelete: '',
             dialogAdd: false,
-            dialogDelete: false
+            dialogDelete: false,
+            keyword: ''
         }
     }
 
@@ -40,7 +42,8 @@ class Main extends React.Component {
         let index = this.getIndexBookStoreById(deleteBookStoreId);
         this.state.bookStores.splice(index, 1);
         this.setState({
-            bookStores: this.state.bookStores
+            bookStores: this.state.bookStores,
+            dialogDelete: false
         })
         this.setStorage()
     }
@@ -107,13 +110,26 @@ class Main extends React.Component {
         })
     }
 
+    onChangeSearch = (event) => {
+        let keyword = event.target.value
+        if (keyword.length > 0) {
+            let items = this.state.bookStores.filter((bookStore) => {
+                return bookStore.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+            });
+            this.setState({
+                bookStores: items,
+                keyword: keyword
+            })
+        }
+    }
+
     render() {
         return (
             <div>
                 <main>
                     <div className="box-search">
                         <div>
-                            <input type="text" className="input-keyword" id="search" placeholder="Search" />
+                            <input type="text" className="input-keyword" value={this.state.keyword} onChange={this.onChangeSearch} placeholder="Search" />
                             <button className="btn-add" id="btn-add" onClick={this.showDialogAddBookStore}><i className="fa fa-plus" aria-hidden="true"></i> Add Book</button>
                         </div>
                     </div>
@@ -131,9 +147,9 @@ class Main extends React.Component {
                                 {
                                     this.state.bookStores.map((bookStore, index) => (
                                     <tr>
-                                        <td>{bookStore.id}</td>
                                         <td>{bookStore.name}</td>
                                         <td>{bookStore.author}</td>
+                                        <td>{bookStore.topic}</td>
                                         <td><a onClick={() => this.showDialogDeleteBookStore(bookStore.id, bookStore.name)}>Delete</a></td>
                                     </tr>     
                                     ))
@@ -155,11 +171,11 @@ class Main extends React.Component {
                             <div className="dialog-content">
                                 <div>
                                     <label>Name</label>
-                                    <input type="text" value={this.state.name} onChange={this.onChangeName}/>
+                                    <input type="text" value={this.state.name} onChange={this.onChangeName} required placeholder="Name"/>
                                 </div>
                                 <div>
                                     <label>Author</label>
-                                    <input type="text" value={this.state.author} onChange={this.onChangeAuthor}/>
+                                    <input type="text" value={this.state.author} onChange={this.onChangeAuthor} required placeholder="Author"/>
                                 </div>
                                 <div>
                                     <label>Topic</label>
@@ -181,7 +197,7 @@ class Main extends React.Component {
                     <div className={this.state.dialogDelete ? 'dialog dialog-hide' : ''}>
                         <div className="dialog-header">
                             <h3>Delete Box</h3>
-                            <a href="#" className="btn-hide-dialog" onClick={() => this.closeDialogDelete}>
+                            <a href="#" className="btn-hide-dialog" onClick={() => this.closeDialogDelete()}>
                                 <i className="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -190,7 +206,7 @@ class Main extends React.Component {
                         </div>
                         <div className="dialog-footer dialog-footer--delete">
                             <a href="#" onClick={() => this.deleteBookStore(this.state.idDelete)}>Delete</a>
-                            <a href="#" onClick={() => this.closeDialogDelete}>Cancel</a>
+                            <a href="#" onClick={() => this.closeDialogDelete()}>Cancel</a>
                         </div>
                     </div>
                 </div>

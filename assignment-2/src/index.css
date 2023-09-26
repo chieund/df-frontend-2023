@@ -138,7 +138,7 @@ td a {
   width: 100%;
   background-color: #fff;
 }
-.dialog-footer input {
+.dialog-footer input, .dialog-footer a {
   background-color: #f05265;
   color: #fff;
   padding: 11px;
