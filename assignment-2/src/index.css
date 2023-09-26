@@ -35,10 +35,14 @@ main {
 }
 
 .box-search {
-  float: right;
   height: 50px;
   margin-top: 10px;
   margin-right: 20px;
+  margin-left: 20px;
+}
+.box-search div {
+  display: flex;
+  justify-content: space-between;
 }
 .box-search .input-keyword {
   border: 1px solid #69645d;
